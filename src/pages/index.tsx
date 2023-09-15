@@ -5,8 +5,6 @@ import { api } from "~/utils/api";
 import styles from "./index.module.css";
 
 export default function Home() {
-  const hello = api.bazar.hello.useQuery({ text: "from tRPC" });
-
   return (
     <>
       <Head>

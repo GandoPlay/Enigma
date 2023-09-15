@@ -6,8 +6,9 @@ generator client {
 }
 
 datasource db {
-    provider = "mysql"
-    url      = env("DATABASE_URL")
+    provider     = "mysql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma" // Add this line
 }
 
 model bazar {
@@ -23,4 +24,6 @@ model person {
     name        String
     bazar       bazar? @relation(fields: [bazarId], references: [id])
     bazarId     Int?
+
+    @@index([bazarId])
 }
