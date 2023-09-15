@@ -10,11 +10,17 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Example {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+model bazar {
+    id     Int      @id @default(autoincrement())
+    name   String
+    date   Int
+    person person[]
+}
 
-    @@index([name])
+model person {
+    id          Int    @id @default(autoincrement())
+    phoneNumber String
+    name        String
+    bazar       bazar? @relation(fields: [bazarId], references: [id])
+    bazarId     Int?
 }
