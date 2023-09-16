@@ -12,18 +12,19 @@ datasource db {
 }
 
 model bazar {
-    id     Int      @id @default(autoincrement())
-    name   String
-    date   Int
+    id     String   @id @default(cuid())
+    name   String   @unique
+    date   BigInt
     person person[]
 }
 
 model person {
-    id          Int    @id @default(autoincrement())
+    id          String @id @default(cuid())
     phoneNumber String
     name        String
     bazar       bazar? @relation(fields: [bazarId], references: [id])
-    bazarId     Int?
+
+    bazarId String?
 
     @@index([bazarId])
 }

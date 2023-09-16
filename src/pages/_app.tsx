@@ -4,11 +4,15 @@ import { api } from "~/utils/api";
 
 import "~/styles/globals.css";
 import { ChakraProvider } from "@chakra-ui/react";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <ChakraProvider>
-      <Component {...pageProps} />
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Component {...pageProps} />
+      </LocalizationProvider>
     </ChakraProvider>
   );
 };

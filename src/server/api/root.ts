@@ -1,4 +1,4 @@
-import { BazarRouter } from "~/server/api/routers/example";
+import { BazarRouter } from "~/server/api/routers/Bazar";
 import { createTRPCRouter } from "~/server/api/trpc";
 
 /**
