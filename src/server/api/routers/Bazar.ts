@@ -32,6 +32,7 @@ export const BazarRouter = createTRPCRouter({
         }
       }
     }),
+
   deleteBazar: publicProcedure
     .input(z.object({ id: z.string() }))
     .mutation(async ({ input, ctx }) => {
@@ -50,6 +51,48 @@ export const BazarRouter = createTRPCRouter({
         data: undefined,
         message: "שגיאה",
       };
+    }),
+
+  addPerson: publicProcedure
+    .input(
+      z.object({
+        bazarName: z.string(),
+        personName: z.string(),
+        personPhone: z.string(),
+      })
+    )
+    .mutation(async ({ input, ctx }) => {
+      try {
+        const person = await ctx.db.person.create({
+          data: {
+            name: input.personName,
+            phoneNumber: input.personPhone,
+          },
+        });
+        const bazar = await ctx.db.bazar.update({
+          where: {
+            name: input.bazarName,
+          },
+          data: {
+            person: {
+              connect: {
+                ...person,
+              },
+            },
+          },
+        });
+        return {
+          data: bazar,
+          message: "באזר עודכן",
+        };
+      } catch (error: any) {
+        console.log(error);
+
+        return {
+          data: undefined,
+          message: "שגיאה",
+        };
+      }
     }),
   getAllBazars: publicProcedure.query(async ({ ctx }) => {
     try {

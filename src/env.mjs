@@ -15,12 +15,8 @@ export const env = createEnv({
         "You forgot to change the default URL"
       ),
       PASSWORD: z
-      .string()
-      .url()
-      .refine(
-        (str) => !str.includes("YOUR_MYSQL_URL_HERE"),
-        "PASSWORD"
-      ),
+      .string(),
+     
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
