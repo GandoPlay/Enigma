@@ -44,10 +44,10 @@ function App() {
 
       const date = new Date(t);
 
-      const fourDaysAgo = new Date();
-      fourDaysAgo.setDate(fourDaysAgo.getDate() - 4);
+      const DayAgo = new Date();
+      DayAgo.setDate(DayAgo.getDate() - 1);
 
-      valid = date <= fourDaysAgo;
+      valid = date <= DayAgo;
     }
 
     if (!localStorage.getItem("sessionId") || valid) {

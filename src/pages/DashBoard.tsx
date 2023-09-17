@@ -29,7 +29,7 @@ import {
   ModalHeader,
   ModalCloseButton,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Controller, useForm } from "react-hook-form";
 import DatePickerDialog from "~/compoments/DatePicker";
@@ -62,6 +62,18 @@ function App() {
   };
 
   const [copySuccess, setCopySuccess] = useState("");
+
+  const router = useRouter();
+
+  useEffect(() => {
+    // Get the token from local storage
+    const token = localStorage.getItem("adminID");
+
+    // If there's no token, redirect to login
+    if (!token) {
+      router.push("/");
+    }
+  }, []);
 
   const copyToClipboard = async (text: string) => {
     try {

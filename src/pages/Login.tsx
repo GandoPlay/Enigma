@@ -12,8 +12,11 @@ import { NumberInput, NumberInputField } from "@chakra-ui/react";
 import crypto from "crypto";
 import { useForm } from "react-hook-form";
 import { env } from "~/env.mjs";
+import { useRouter } from "next/router";
 
 function App() {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -21,8 +24,9 @@ function App() {
     formState: { errors },
   } = useForm();
   const onSubmit = (data: any) => {
-    if (data.password === env.PASSWORD) {
+    if (data.password === env.NEXT_PUBLIC_PASSWORD) {
       localStorage.setItem("adminID", data.password);
+      router.push("/DashBoard");
     }
   };
 
@@ -44,17 +48,7 @@ function App() {
               placeholder="סיסמא"
             ></Input>
 
-            <Button
-              onClick={() => {
-                if (!localStorage.getItem("sessionId")) {
-                  const sessionId = crypto.randomBytes(64).toString("hex");
-
-                  localStorage.setItem("sessionId", sessionId);
-                }
-              }}
-            >
-              שלח
-            </Button>
+            <Button type="submit">שלח</Button>
           </Flex>
         </Center>
       </Box>
