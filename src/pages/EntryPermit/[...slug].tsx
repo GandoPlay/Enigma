@@ -99,8 +99,8 @@ function App() {
                 <NumberInputField
                   {...register("phoneNumber", {
                     required: true,
-                    minLength: 9,
-                    maxLength: 9,
+                    minLength: 10,
+                    maxLength: 10,
                   })}
                   placeholder="מספר טלפון"
                 />
