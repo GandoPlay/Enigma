@@ -42,7 +42,8 @@ function App() {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+
+    formState: { errors, isValid },
   } = useForm();
   const { data: bazars, isLoading } = api.bazar.getAllBazars.useQuery();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -61,8 +62,6 @@ function App() {
     context.bazar.invalidate();
   };
 
-  const [copySuccess, setCopySuccess] = useState("");
-
   const router = useRouter();
 
   useEffect(() => {
@@ -78,9 +77,9 @@ function App() {
   const copyToClipboard = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
-      setCopySuccess("Copied!");
+      alert("ההודעה הועתקה");
     } catch (err) {
-      setCopySuccess("Failed to copy text");
+      alert(" נסה שוב");
     }
   };
   if (isLoading) {
@@ -111,11 +110,20 @@ function App() {
                   fontSize="sm"
                   fontWeight="md"
                 ></FormLabel>
-                <DatePickerDialog isRange={false} onChange={onChange} />
+                <DatePickerDialog
+                  defaultDate={new Date()}
+                  isRange={false}
+                  onChange={onChange}
+                />
               </FormControl>
             )}
           />
-          <Button isLoading={loadingAdd} fontSize={"xl"} type="submit">
+          <Button
+            isDisabled={!isValid}
+            isLoading={loadingAdd}
+            fontSize={"xl"}
+            type="submit"
+          >
             הוסף באזר
           </Button>
         </Flex>

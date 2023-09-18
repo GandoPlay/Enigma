@@ -21,7 +21,7 @@ function App() {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm();
   const onSubmit = (data: any) => {
     if (data.password === env.NEXT_PUBLIC_PASSWORD) {
@@ -48,7 +48,9 @@ function App() {
               placeholder="סיסמא"
             ></Input>
 
-            <Button type="submit">שלח</Button>
+            <Button isDisabled={!isValid} type="submit">
+              שלח
+            </Button>
           </Flex>
         </Center>
       </Box>

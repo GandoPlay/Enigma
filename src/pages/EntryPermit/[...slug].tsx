@@ -30,7 +30,7 @@ function App() {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm();
   const router = useRouter();
 
@@ -97,11 +97,17 @@ function App() {
               ></Input>
               <NumberInput>
                 <NumberInputField
-                  {...register("phoneNumber", { required: true })}
+                  {...register("phoneNumber", {
+                    required: true,
+                    minLength: 9,
+                    maxLength: 9,
+                  })}
                   placeholder="מספר טלפון"
                 />
               </NumberInput>
-              <Button type="submit">שלח</Button>
+              <Button isDisabled={!isValid} type="submit">
+                שלח
+              </Button>
             </Flex>
           )}
         </Center>
