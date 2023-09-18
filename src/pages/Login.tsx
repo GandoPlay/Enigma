@@ -7,7 +7,7 @@ import {
   Input,
   keyframes,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NumberInput, NumberInputField } from "@chakra-ui/react";
 import crypto from "crypto";
 import { useForm } from "react-hook-form";
@@ -29,6 +29,14 @@ function App() {
       router.push("/DashBoard");
     }
   };
+  useEffect(() => {
+    // Get the token from local storage
+    const token = localStorage.getItem("adminID");
+
+    if (token === env.NEXT_PUBLIC_PASSWORD) {
+      router.push("/DashBoard");
+    }
+  }, []);
 
   const breatheAnimation = keyframes`
     0% { transform: scale(0.9); }
