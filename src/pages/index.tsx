@@ -27,6 +27,7 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.container}>
+          <script src="https://cdn.enable.co.il/licenses/enable-L221264ngq69ipjb-0923-50462/init.js"></script>
           <h1 className={styles.title}>?מגיעים לבאזר</h1>
         </div>
       </main>
