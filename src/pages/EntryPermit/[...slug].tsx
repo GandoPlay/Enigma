@@ -72,6 +72,8 @@ function App() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <script src="https://cdn.enable.co.il/licenses/enable-L221264ngq69ipjb-0923-50462/init.js"></script>
+
       <Box w="100vw" h="100vh" bgGradient="linear(to-r, blue.500, blue.200)">
         <Center h="100vh">
           {!showInput ? (
